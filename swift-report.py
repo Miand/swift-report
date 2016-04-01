@@ -108,7 +108,8 @@ def get_stor_hosts(r):
     ret = []
     for dev in r.devs:
         # discard dev['port'] - not needed for ssh
-        ret.append((dev['ip'],dev['device']))
+        if type(dev) is dict:
+            ret.append((dev['ip'],dev['device']))
     return ret
 
 # Run ssh to every known device's host and collect accounts;
